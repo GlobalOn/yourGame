@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import yourGame.project10.model.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Integer> {
 
 
 }

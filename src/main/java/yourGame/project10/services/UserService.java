@@ -19,22 +19,18 @@ public class UserService {
     }
 
     @Transactional
-    public User findUser(Long userId) {
+    public User findUser(Integer userId) {
         Optional<User> employeesOptional = userRepository.findById(userId);
-        if (employeesOptional.isPresent()) {
-            return employeesOptional.get();
-        }
-        return null;
+        return employeesOptional.orElse(null);
     }
 
     @Transactional
     public User addUser(User user) {
-        User savedUser = userRepository.save(user);
-        return savedUser;
+        return userRepository.save(user);
     }
 
     @Transactional
-    public void deleteUserById(Long userId) {
+    public void deleteUserById(Integer userId) {
         User user = findUser(userId);
         if (user != null) {
             userRepository.delete(user);
@@ -42,13 +38,14 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUserById(Long useId, String name, String password, String role, String game) {
+    public void updateUserById(Integer useId, String name, String email, String password, Integer role, String game) {
         User user = findUser(useId);
         if (user != null) {
             user.setName(name);
-            user.setName(password);
-            user.setName(role);
-            user.setName(game);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setRole(role);
+            user.setGame(game);
         }
     }
 }

@@ -26,7 +26,7 @@ public class UserController {
     public User addNewUser(@RequestParam String name,
                            @RequestParam String password,
                            @RequestParam String email,
-                           @RequestParam int role,
+                           @RequestParam Integer role,
                            @RequestParam String game) {
         return userService.addUser(new User(name, password, email, role, game));
     }
