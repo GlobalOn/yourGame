@@ -6,19 +6,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import yourGame.project10.model.User;
+import yourGame.project10.model.UserRoles;
+import yourGame.project10.services.UserRoleService;
 import yourGame.project10.services.UserService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
     UserService userService;
+    UserRoleService userRoleService;
 
     public UserController() {
     }
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserRoleService userRoleService, UserService userService) {
+        this.userRoleService = userRoleService;
         this.userService = userService;
     }
 
@@ -28,6 +32,10 @@ public class UserController {
                            @RequestParam String email,
                            @RequestParam Integer role,
                            @RequestParam String game) {
-        return userService.addUser(new User(name, password, email, role, game));
+        userRoleService.addUserRole(new UserRoles("Regular user"));
+        userRoleService.addUserRole(new UserRoles("Admin"));
+
+        User user = new User(name, password, email, role, game);
+        return userService.addUser(user);
     }
 }

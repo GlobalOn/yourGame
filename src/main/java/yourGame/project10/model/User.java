@@ -25,8 +25,8 @@ public class User {
     @Column(name = "user_email")
     private String email;
 
-    @Column(name = "user_roles_userroles_id`")
-    private int role;
+    @Column(name = "user_roles_userroles_id")
+    private Integer role;
 
     @Column(name = "user_game")
     private String game;
@@ -34,7 +34,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password, String email, int role, String game) {
+    public User(String name, String password, String email, Integer role, String game) {
         this.name = name;
         this.password = password;
         this.email = email;
@@ -66,11 +66,11 @@ public class User {
         this.email = email;
     }
 
-    public int getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
